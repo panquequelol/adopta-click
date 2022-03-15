@@ -1,7 +1,6 @@
 from flask import render_template, request, redirect, session, flash
 from flask_app import app
 from flask_app.models.user import User
-from flask_app.models.message import Message
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -23,7 +22,7 @@ def register():
   id = User.save(register_form)
   session['user_id'] = id
 
-  return redirect('/wall')
+  return redirect('/dashboard')
 
 @app.route('/users/login', methods=['POST'])
 def login():
@@ -38,19 +37,4 @@ def login():
     return redirect('/')
   
   session['user_id'] = user.id
-  return redirect('/wall')
-
-@app.route('/wall')
-def wall():
-  if 'user_id' not in session:
-    return redirect('/')
-
-  data = {
-    'id': session['user_id']
-  }
-
-  user = User.get_by_id(data)
-  messages = Message.get_user_messages(data)
-  users = User.get_all()
-
-  return render_template('wall.html', users = users, user = user, messages = messages)
+  return redirect('/dashboard')

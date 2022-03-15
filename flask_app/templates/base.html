@@ -25,18 +25,18 @@
 		</script>
 	</head>
 	<body class="font-inter max-w-5xl mx-auto">
-		<header>
+		<header class="p-4">
 			<nav class="{% block hidden %}{% endblock %}">
-				<ul class="flex justify-between">
+				<ul class="flex justify-end gap-2">
 					<li>
-						<a class="hover:text-sky-500 p-1" href="/">Home</a>
+						<a class="hover:text-sky-500 p-1" href="/dashboard">Dashboard</a>
 					</li>
 					<li>
-						<a class="hover:text-sky-500 p-1" href="/logout">Logout</a>
+						<a class="text-white rounded hover:bg-red-400 transition-all py-1 px-2 bg-red-500" href="/logout">Logout</a>
 					</li>
 				</ul>
 			</nav>
 		</header>
-		<main>{% block content %} {% endblock %}</main>
+		<main class="p-4">{% block content %} {% endblock %}</main>
 	</body>
 </html>

@@ -3,7 +3,7 @@ hidden %}hidden{% endblock %} {% block content %}
 <section
 	class="pt-[6vh] h-screen md:grid grid-cols-2 space-y-16 sm:space-y-0 gap-4 px-4 lg:px-0"
 >
-	<form class="flex flex-col gap-2" action="/users/register" method="POST">
+	<form class="flex flex-col gap-2 mb-10" action="/users/register" method="POST">
 		<h1 class="font-bold text-xl text-center">Register</h1>
 		{% with messages = get_flashed_messages(category_filter=['register']) %}
 			{% if messages %}

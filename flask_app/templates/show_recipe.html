@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}Home page{% endblock %} {% block
+hidden %}{% endblock %} {% block content %}
+<section>
+	<h1 class="text-xl font-bold py-4">{{recipe.name}}</h1>
+	<div class="border border-gray-200 rounded p-4">
+		<p class="font-semibold italic">Description:</p>
+		<p>{{recipe.description}}</p>
+		<p class="font-semibold italic">Under 30 minutes?</p>
+		<p>{{(recipe.under_30) and 'Yes' or 'No'}}</p>
+		<p class="font-semibold italic">Instructions:</p>
+		<p>{{recipe.instructions}}</p>
+		<p class="font-semibold italic">Date Made:</p>
+		<p>{{recipe.date_made}}</p>
+	</div>
+</section>
+{% endblock %}
