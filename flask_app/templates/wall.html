@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block title %}Home page{% endblock %} {% block
+hidden %}{% endblock %} {% block content %}
+<section class="grid grid-cols-2 gap-4">
+	<div>
+		<h1 class="text-center text-xl font-bold">You have {{messages|length}} messages</h1>
+		{% for m in messages %}
+		<div class="space-y-2 my-4">
+			<p class="text-lg">
+				<span class="italic font-semibold">{{m.sender}}</span> sent you a
+				message:
+			</p>
+			<p class="text-gray-600">{{m.content}}</p>
+			<a
+				class="text-white border bg-red-400 hover:bg-red-300 border-gray-200 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 transition-all rounded block text-center py-1 hover:cursor-pointer"
+				href="/eliminar/mensaje/{{m.id}}"
+				>Delete</a
+			>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div>
+		<h1 class="text-center text-xl font-bold">Send a message</h1>
+		{% for i in users %} {% if i.id != user.id %}
+		<form
+			class="flex flex-col gap-2 border rounded p-4 my-4 border-gray-200"
+			action="/send_message"
+			method="POST"
+		>
+			<label class="text-lg" for="content"
+				>to <span class="italic font-semibold">{{i.first_name}}</span>:</label
+			>
+			<textarea
+				class="border border-gray-200 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 transition-all rounded px-2 py-1"
+				name="content"
+				id="content"
+				cols="30"
+				rows="5"
+			></textarea>
+			<input type="hidden" name="sender_id" value="{{user.id}}" />
+			<input type="hidden" name="receiver_id" value="{{i.id}}" />
+			<input
+				type="submit"
+				value="Send"
+				class="text-white border bg-sky-400 hover:bg-sky-300 border-gray-200 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 transition-all rounded py-1 hover:cursor-pointer"
+			/>
+		</form>
+		{% endif %} {% endfor%}
+	</div>
+</section>
+{% endblock %}

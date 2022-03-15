@@ -24,21 +24,15 @@
 			};
 		</script>
 	</head>
-	<body class="font-inter max-w-5xl mx-auto m-2">
+	<body class="font-inter max-w-5xl mx-auto">
 		<header>
-			<nav>
+			<nav class="{% block hidden %}{% endblock %}">
 				<ul class="flex justify-between">
 					<li>
-						<a class="hover:text-sky-500 p-1" href="/users">Home</a>
+						<a class="hover:text-sky-500 p-1" href="/">Home</a>
 					</li>
 					<li>
-						<a class="hover:text-sky-500 p-1" href="/users/new">Link</a>
-					</li>
-					<li>
-						<a class="hover:text-sky-500 p-1" href="/users/new">Link</a>
-					</li>
-					<li>
-						<a class="hover:text-sky-500 p-1" href="/users/new">Link</a>
+						<a class="hover:text-sky-500 p-1" href="/logout">Logout</a>
 					</li>
 				</ul>
 			</nav>
