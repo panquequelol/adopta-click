@@ -1,0 +1,143 @@
+{% extends 'base.html' %} {% block title %}Buscar — adopta.click{% endblock %}
+{% block primaryButton %}
+<a
+	class="py-2 px-6 rounded-full border-2 border-rose-500 font-semibold text-lg bg-rose-500 hover:border-rose-400 hover:bg-rose-400 text-white transition-all"
+	href="/logout"
+	>Salir</a
+>
+{% endblock %}{% block content %}
+<section class="text-white mb-8">
+	<p class="text-center text-xl font-bold">Cuentanos sobre tu animalito...</p>
+	{% with messages = get_flashed_messages(category_filter=['pets']) %} {% if
+	messages %}
+	<div class="p-2 bg-red-100 border border-red-200 rounded mb-6">
+		{% for message in messages %}
+		<p class="text-red-500">{{message}}</p>
+		{% endfor%}
+	</div>
+	{% endif %} {% endwith %}
+	<form
+		class="flex flex-col gap-2 max-w-lg mx-auto p-4 md:p-0"
+		action="/buscar/create"
+		method="POST"
+		enctype="multipart/form-data"
+	>
+		<div class="flex flex-col gap-2">
+			<label for="name">Nombre</label>
+			<input
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				type="text"
+				name="name"
+				id="name"
+			/>
+			<label for="type">Tipo de mascota</label>
+			<select
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				name="type"
+				id="type"
+			>
+				<option class="bg-slate-900" value="Gato">Gato</option>
+				<option class="bg-slate-900" value="Perro">Perro</option>
+				<option class="bg-slate-900" value="Otro">Otro</option>
+			</select>
+
+			<label for="gender">Genero de la mascota</label>
+			<select
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				name="gender"
+				id="gender"
+			>
+				<option class="bg-slate-900" value="Macho">Macho</option>
+				<option class="bg-slate-900" value="Hembra">Hembra</option>
+			</select>
+
+			<label for="age">Edad de la mascota</label>
+			<input
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				type="number"
+				name="age"
+				id="age"
+			/>
+
+			<label for="image">Imagen de la mascota</label>
+			<input
+				class="file:bg-purple-800 file:border-none file:outline-none file:rounded-full file:font-semibold file:text-white file:px-2"
+				type="file"
+				name="image"
+				id="image"
+			/>
+
+			<label for="description">Descripcion de la mascota</label>
+			<textarea
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				name="description"
+				id="description"
+				cols="30"
+				rows="10"
+				placeholder="Tiene x vacuna... es muy juegueton..."
+			></textarea>
+
+			<p class="text-center text-xl font-bold">¿Como te podemos contactar?</p>
+
+			<label for="location">Locación</label>
+			<select
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				name="location"
+				id="location"
+			>
+				<option class="bg-slate-900" value="Ñuñoa">Ñuñoa</option>
+				<option class="bg-slate-900" value="Providencia">Providencia</option>
+				<option class="bg-slate-900" value="La Florida">La Florida</option>
+				<option class="bg-slate-900" value="Cerrillos">Cerrillos</option>
+				<option class="bg-slate-900" value="Cerro Navia">Cerro Navia</option>
+				<option class="bg-slate-900" value="Conchalí">Conchalí</option>
+				<option class="bg-slate-900" value="El Bosque">El Bosque</option>
+				<option class="bg-slate-900" value="Estación Central">
+					Estación Central
+				</option>
+				<option class="bg-slate-900" value="Huechuraba">Huechuraba</option>
+				<option class="bg-slate-900" value="Independencia">Independencia</option>
+				<option class="bg-slate-900" value="Paine">Paine</option>
+				<option class="bg-slate-900" value="La Granja">La Granja</option>
+				<option class="bg-slate-900" value="La Pintana">La Pintana</option>
+				<option class="bg-slate-900" value="La Reina">La Reina</option>
+				<option class="bg-slate-900" value="Lo Barnechea">Lo Barnechea</option>
+				<option class="bg-slate-900" value="Lo Espejo">Lo Espejo</option>
+				<option class="bg-slate-900" value="Lo Prado">Lo Prado</option>
+				<option class="bg-slate-900" value="Macul">Macul</option>
+				<option class="bg-slate-900" value="Maipú">Maipú</option>
+				<option class="bg-slate-900" value="Pedro Aguirre Cerda">
+					Pedro Aguirre Cerda
+				</option>
+				<option class="bg-slate-900" value="Peñalolén">Peñalolén</option>
+				<option class="bg-slate-900" value="Pudahuel">Pudahuel</option>
+				<option class="bg-slate-900" value="Quilicura">Quilicura</option>
+				<option class="bg-slate-900" value="Quinta Normal">Quinta Normal</option>
+				<option class="bg-slate-900" value="Recoleta">Recoleta</option>
+				<option class="bg-slate-900" value="Renca">Renca</option>
+				<option class="bg-slate-900" value="San Joaquin">San Joaquin</option>
+				<option class="bg-slate-900" value="San Miguel">San Miguel</option>
+				<option class="bg-slate-900" value="San Ramón">San Ramón</option>
+				<option class="bg-slate-900" value="Santiago">Santiago</option>
+				<option class="bg-slate-900" value="Vitacura">Vitacura</option>
+			</select>
+
+			<label for="phone">Telefono celular</label>
+			<input
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				type="text"
+				name="phone"
+				id="phone"
+				placeholder="+56 9 12345678"
+			/>
+
+			<input hidden type="text" name="user_id" id="user_id" value="{{user_id}}" />
+		</div>
+		<input
+			class="bg-purple-500 hover:bg-purple-400 font-bold focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all rounded py-2 hover:cursor-pointer mt-2 tracking-wide"
+			type="submit"
+			value="Poner en adopción"
+		/>
+	</form>
+</section>
+{% endblock %}

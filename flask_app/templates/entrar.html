@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% block title %}Entrar — adopta.click{% endblock %} {% block
+hidden %}{% endblock %} {% block content %}
+<section
+	class="mb-8 mt-[2vh] md:mt-[7vh] max-h-screen md:grid grid-cols-2 space-y-16 sm:space-y-0 gap-4 px-4 lg:px-0 text-white max-w-2xl mx-auto"
+>
+	<form class="flex flex-col gap-2 mb-10" action="/users/register" method="POST">
+		<h1 class="font-bold text-xl text-center">Registrate!</h1>
+		{% with messages = get_flashed_messages(category_filter=['register']) %} {% if
+		messages %}
+		<div class="p-2 bg-red-100 border border-red-200 rounded">
+			{% for message in messages %}
+			<p class="text-red-500">{{message}}</p>
+			{% endfor%}
+		</div>
+		{% endif %} {% endwith %}
+		<label for="first_name">Nombre</label>
+		<input
+			class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+			type="text"
+			name="first_name"
+			id="first_name"
+		/>
+		<label for="last_name">Apellido</label>
+		<input
+			class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+			type="text"
+			name="last_name"
+			id="last_name"
+		/>
+		<label for="register_email">Email</label>
+		<input
+			class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+			type="text"
+			name="register_email"
+			id="register_email"
+		/>
+		<label for="register_password">Contraseña</label>
+		<input
+			class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+			type="password"
+			name="register_password"
+			id="register_password"
+		/>
+		<label for="confirm_password">Confirmar contraseña</label>
+		<input
+			class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+			type="password"
+			name="confirm_password"
+			id="confirm_password"
+		/>
+		<input
+			class="text-white bg-purple-500 hover:bg-purple-400 font-bold focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all rounded py-2 hover:cursor-pointer mt-2 tracking-wide"
+			type="submit"
+			value="Registrame"
+		/>
+	</form>
+	<form class="flex flex-col gap-2" action="/users/login" method="POST">
+		<h1 class="font-bold text-xl text-center">Inicia sesión</h1>
+		{% with messages = get_flashed_messages(category_filter=['login']) %} {% if
+		messages %}
+		<div class="p-2 bg-red-100 border border-red-200 rounded">
+			{% for message in messages %}
+			<p class="text-red-500">{{message}}</p>
+			{% endfor%}
+		</div>
+		{% endif %} {% endwith %}
+		<label for="login_email">Email</label>
+		<input
+			class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+			type="text"
+			name="login_email"
+			id="login_email"
+		/>
+		<label for="login_password">Contraseña</label>
+		<input
+			class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+			type="password"
+			name="login_password"
+			id="login_password"
+		/>
+		<input
+			class="text-white bg-purple-500 hover:bg-purple-400 font-bold focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all rounded py-2 hover:cursor-pointer mt-2 tracking-wide"
+			type="submit"
+			value="Ingresar"
+		/>
+	</form>
+</section>
+{% endblock %}

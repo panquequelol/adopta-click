@@ -8,7 +8,7 @@ bcrypt = Bcrypt(app)
 @app.route('/users/register', methods=['POST'])
 def register():
   if not User.validate(request.form):
-    return redirect('/')
+    return redirect('/entrar')
 
   pwd = bcrypt.generate_password_hash(request.form['register_password'])
 
@@ -22,7 +22,7 @@ def register():
   id = User.save(register_form)
   session['user_id'] = id
 
-  return redirect('/dashboard')
+  return redirect('/buscar')
 
 @app.route('/users/login', methods=['POST'])
 def login():
@@ -31,10 +31,11 @@ def login():
   # Error al iniciar sesion
   if not user:
     flash('Email not registerd', 'login')
-    return redirect('/')
+    return redirect('/entrar')
   if not bcrypt.check_password_hash(user.password, request.form['login_password']):
     flash('Wrong password', 'login')
-    return redirect('/')
+    return redirect('/entrar')
   
   session['user_id'] = user.id
-  return redirect('/dashboard')
+
+  return redirect('/buscar')

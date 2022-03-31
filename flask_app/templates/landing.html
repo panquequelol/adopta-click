@@ -1,0 +1,23 @@
+{% extends 'base.html' %}{% block title %}adopta.click{% endblock %} {% block
+content %}
+<section
+	class="min-h-screen bg-no-repeat bg-cover md:bg-right"
+	style="
+		background-image: url('https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+	"
+>
+	<div class="grid place-content-center lg:block px-4 md:px-0 pt-[16vh] md:pt-[32vh] lg:pl-[32vh] mx-auto ">
+		<p data-aos="fade-up" data-aos-duration="800" class="text-white text-3xl md:text-5xl tracking-wide md:max-w-2xl max-w-lg">
+			¡Adoptar una mascota esta
+			a un <span class="font-bold">Click</span> de distancia!
+		</p>
+		<div data-aos="fade-up" data-aos-duration="1000" class="mt-6 md:text-xl space-x-2">
+			<a class="py-2 px-4 rounded-full border-2 border-white text-black bg-white font-semibold inline-block hover:-translate-y-1 transition-all hover:shadow hover:shadow-white" href="/buscar">😸Adoptar</a>
+			<a class="py-2 px-4 rounded-full border-2 border-white text-white inline-block hover:-translate-y-1 transition-all hover:shadow hover:shadow-white bg-black/70" href="/buscar/add">🐈Poner en adopcion</a>
+		</div>
+	</div>
+  <div class="overflow-hidden">
+    <img class="md:hidden object-cover object-right h-screen" src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="stock cat image looking at you">
+  </div>
+</section>
+{% endblock %}

@@ -17,7 +17,7 @@ class User:
 
   @classmethod
   def get_all(cls):
-    results = connectToMySQL('recipe_db').query_db('SELECT * FROM users;')
+    results = connectToMySQL('adoptaclick').query_db('SELECT * FROM users;')
     users = []
     for row_user in results:
       users.append(cls(row_user))
@@ -44,7 +44,7 @@ class User:
       is_valid = False
     
     query = 'SELECT * FROM users WHERE email = %(register_email)s'
-    results = connectToMySQL('recipe_db').query_db(query, form)
+    results = connectToMySQL('adoptaclick').query_db(query, form)
     if len(results) >= 1:
       flash('Email already registerd', 'register')
       is_valid = False
@@ -54,13 +54,13 @@ class User:
   @classmethod
   def save(cls, data):
     query = 'INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s)'
-    newId = connectToMySQL('recipe_db').query_db(query, data)
+    newId = connectToMySQL('adoptaclick').query_db(query, data)
     return newId
   
   @classmethod
   def get_by_email(cls, data):
     query = 'SELECT * FROM users WHERE email = %(login_email)s'
-    result = connectToMySQL('recipe_db').query_db(query, data)
+    result = connectToMySQL('adoptaclick').query_db(query, data)
     # no encuentra el email
     if len(result) < 1:
       return False
@@ -71,6 +71,6 @@ class User:
   @classmethod
   def get_by_id(cls, data):
     query = 'SELECT * FROM users WHERE id = %(id)s'
-    result = connectToMySQL('recipe_db').query_db(query, data)
+    result = connectToMySQL('adoptaclick').query_db(query, data)
     user = cls(result[0])
     return user

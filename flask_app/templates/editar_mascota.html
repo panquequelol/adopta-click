@@ -1,0 +1,152 @@
+{% extends 'base.html' %} {% block title %}Buscar — adopta.click{% endblock %}
+{% block primaryButton %}
+<a
+	class="py-2 px-6 rounded-full border-2 border-rose-500 font-semibold text-lg bg-rose-500 hover:border-rose-400 hover:bg-rose-400 text-white transition-all"
+	href="/logout"
+	>Salir</a
+>
+{% endblock %}{% block content %}
+<section class="text-white mb-8">
+	<p class="text-center text-xl font-bold">Cuentanos sobre tu animalito...</p>
+	{% with messages = get_flashed_messages(category_filter=['pets']) %} {% if
+	messages %}
+	<div class="max-w-lg mx-auto p-2 bg-red-900 border border-red-500 rounded mb-6">
+		{% for message in messages %}
+		<p class="text-red-500">{{message}}</p>
+		{% endfor%}
+	</div>
+	{% endif %} {% endwith %}
+	<form
+		class="flex flex-col gap-2 max-w-lg mx-auto p-4 md:p-0"
+		action="/update"
+		method="POST"
+		enctype="multipart/form-data"
+	>
+		<div class="flex flex-col gap-2">
+			<label for="name">Nombre</label>
+			<input
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				type="text"
+				name="name"
+				id="name"
+				value="{{pet.name}}"
+			/>
+			<label for="type">Tipo de mascota</label>
+			<select
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				name="type"
+				id="type"
+			>
+				<option {% if pet.type == 'Gato' %} selected {% endif %} class="bg-slate-900" value="Gato">Gato</option>
+				<option {% if pet.type == 'Perro' %} selected {% endif %} class="bg-slate-900" value="Perro">Perro</option>
+				<option {% if pet.type == 'Otro' %} selected {% endif %} class="bg-slate-900" value="Otro">Otro</option>
+			</select>
+
+			<label for="gender">Genero de la mascota</label>
+			<select
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				name="gender"
+				id="gender"
+			>
+				<option {% if pet.gender == 'Macho' %} selected {% endif %} class="bg-slate-900" value="Macho">Macho</option>
+				<option {% if pet.gender == 'Hembra' %} selected {% endif %} class="bg-slate-900" value="Hembra">Hembra</option>
+			</select>
+
+			<label for="age">Edad de la mascota</label>
+			<input
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				type="number"
+				name="age"
+				id="age"
+				value="{{pet.age}}"
+			/>
+
+			<label for="image">Imagen de la mascota</label>
+			<p class="text-xs text-red-100 p-1 bg-red-500 rounded">⚠️ Porfavor ingresar actualizar imagen o cargar nuevamente la imagen previa</p>
+			<input
+				class="file:bg-purple-800 file:border-none file:outline-none file:rounded-full file:font-semibold file:text-white file:px-2"
+				type="file"
+				name="image"
+				id="image"
+			/>
+
+			<label for="description">Descripcion de la mascota</label>
+			<textarea
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				name="description"
+				id="description"
+				cols="30"
+				rows="10"
+				placeholder="Tiene x vacuna... es muy juegueton..."
+			>{{pet.description}}</textarea>
+
+			<p class="text-center text-xl font-bold">¿Como te podemos contactar?</p>
+
+			<label for="location">Locación</label>
+			<select
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				name="location"
+				id="location"
+			>
+				<option {% if pet.location == 'Ñuñoa' %} selected {% endif %} class="bg-slate-900" value="Ñuñoa">Ñuñoa</option>
+				<option {% if pet.location == 'Providencia' %} selected {% endif %} class="bg-slate-900" value="Providencia">Providencia</option>
+				<option {% if pet.location == 'La Florida' %} selected {% endif %} class="bg-slate-900" value="La Florida">La Florida</option>
+				<option {% if pet.location == 'Cerrillos' %} selected {% endif %} class="bg-slate-900" value="Cerrillos">Cerrillos</option>
+				<option {% if pet.location == 'Cerro Navia' %} selected {% endif %} class="bg-slate-900" value="Cerro Navia">Cerro Navia</option>
+				<option {% if pet.location == 'Conchalí' %} selected {% endif %} class="bg-slate-900" value="Conchalí">Conchalí</option>
+				<option {% if pet.location == 'El Bosque' %} selected {% endif %} class="bg-slate-900" value="El Bosque">El Bosque</option>
+				<option {% if pet.location == 'Estación Central' %} selected {% endif %} class="bg-slate-900" value="Estación Central">
+					Estación Central
+				</option>
+				<option {% if pet.location == 'Huechuraba' %} selected {% endif %} class="bg-slate-900" value="Huechuraba">Huechuraba</option>
+				<option {% if pet.location == 'Independencia' %} selected {% endif %} class="bg-slate-900" value="Independencia">Independencia</option>
+				<option {% if pet.location == 'Paine' %} selected {% endif %} class="bg-slate-900" value="Paine">Paine</option>
+				<option {% if pet.location == 'La Granja' %} selected {% endif %} class="bg-slate-900" value="La Granja">La Granja</option>
+				<option {% if pet.location == 'La Pintana' %} selected {% endif %} class="bg-slate-900" value="La Pintana">La Pintana</option>
+				<option {% if pet.location == 'La Reina' %} selected {% endif %} class="bg-slate-900" value="La Reina">La Reina</option>
+				<option {% if pet.location == 'Lo Barnechea' %} selected {% endif %} class="bg-slate-900" value="Lo Barnechea">Lo Barnechea</option>
+				<option {% if pet.location == 'Lo Espejo' %} selected {% endif %} class="bg-slate-900" value="Lo Espejo">Lo Espejo</option>
+				<option {% if pet.location == 'Lo Prado' %} selected {% endif %} class="bg-slate-900" value="Lo Prado">Lo Prado</option>
+				<option {% if pet.location == 'Macul' %} selected {% endif %} class="bg-slate-900" value="Macul">Macul</option>
+				<option {% if pet.location == 'Maipú' %} selected {% endif %} class="bg-slate-900" value="Maipú">Maipú</option>
+				<option {% if pet.location == 'Pedro Aguirre Cerda' %} selected {% endif %} class="bg-slate-900" value="Pedro Aguirre Cerda">
+					Pedro Aguirre Cerda
+				</option>
+				<option {% if pet.location == 'Peñalolén' %} selected {% endif %} class="bg-slate-900" value="Peñalolén">Peñalolén</option>
+				<option {% if pet.location == 'Pudahuel' %} selected {% endif %} class="bg-slate-900" value="Pudahuel">Pudahuel</option>
+				<option {% if pet.location == 'Quilicura' %} selected {% endif %} class="bg-slate-900" value="Quilicura">Quilicura</option>
+				<option {% if pet.location == 'Quinta Normal' %} selected {% endif %} class="bg-slate-900" value="Quinta Normal">Quinta Normal</option>
+				<option {% if pet.location == 'Recoleta' %} selected {% endif %} class="bg-slate-900" value="Recoleta">Recoleta</option>
+				<option {% if pet.location == 'Renca' %} selected {% endif %} class="bg-slate-900" value="Renca">Renca</option>
+				<option {% if pet.location == 'San Joaquin' %} selected {% endif %} class="bg-slate-900" value="San Joaquin">San Joaquin</option>
+				<option {% if pet.location == 'San Miguel' %} selected {% endif %} class="bg-slate-900" value="San Miguel">San Miguel</option>
+				<option {% if pet.location == 'San Ramón' %} selected {% endif %} class="bg-slate-900" value="San Ramón">San Ramón</option>
+				<option {% if pet.location == 'Santiago' %} selected {% endif %} class="bg-slate-900" value="Santiago">Santiago</option>
+				<option {% if pet.location == 'Vitacura' %} selected {% endif %} class="bg-slate-900" value="Vitacura">Vitacura</option>
+			</select>
+
+			<label for="phone">Telefono celular</label>
+			<input
+				class="bg-gray-800 border-2 border-gray-600 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all rounded px-2 py-1"
+				type="text"
+				name="phone"
+				id="phone"
+				placeholder="+56 9 12345678"
+				value="{{pet.phone}}"
+			/>
+
+			<input hidden type="text" name="user_id" id="user_id" value="{{user_id}}" />
+			<input hidden type="text" name="id" id="id" value="{{pet.id}}" />
+		</div>
+		<div class="flex gap-2">
+			<input
+				class="w-1/2 bg-purple-500 hover:bg-purple-400 font-bold focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all rounded py-2 hover:cursor-pointer mt-2 tracking-wide"
+				type="submit"
+				value="Actualizar adopción"
+			/>
+			<a class="w-1/2 text-center bg-red-500 hover:bg-red-400 font-bold focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all rounded py-2 hover:cursor-pointer mt-2 tracking-wide" href="/destroy/{{pet.id}}">Eliminar</a>
+		</div>
+		<a class="flex flex-auto border-2 justify-center border-purple-300 text-purple-100 hover:bg-slate-800 font-bold focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all rounded py-2 hover:cursor-pointer mt-2 tracking-wide" href="/buscar">Cancelar</a>
+	</form>
+</section>
+{% endblock %}
