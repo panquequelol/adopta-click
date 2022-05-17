@@ -1,7 +1,10 @@
 # Adopta.click
 
 ![image1](imgs/landing.png)
-![image2](imgs/browse-desktop.png)
+
+Desktop             |  Mobile
+:-------------------------:|:-------------------------:
+![](imgs/browse-desktop.png)  |  ![](imgs/browse-mobile.png)
 
 ## Tech Stack
 
